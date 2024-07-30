@@ -30,3 +30,15 @@
 .converter input {
     margin-bottom: 30px;
 }
+
+.converter span 
+.converter p {
+    margin: 0.5rem;
+    font-size: 1rem;
+    color: #495057;
+}
+
+.converter p {
+    font-size: 1.2rem;
+}
+

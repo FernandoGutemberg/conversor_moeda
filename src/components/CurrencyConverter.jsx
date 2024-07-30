@@ -5,7 +5,7 @@ const CurrencyConverter = () => {
     return (
         <div className="converter">
             <h2>Conversor de Moedas</h2>
-            <input type="number" />
+            <input type="number"  placeholder="Digite o valor"/>
             <span>Selecione as moedas</span>
             <select>
                 <option value="BRL">BRL</option>
