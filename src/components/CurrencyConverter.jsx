@@ -21,13 +21,30 @@ const CurrencyConverter = () => {
             });
     }, []);
 
+    useEffect(() => {
+
+        if(rates) {
+            const rateFrom = rates[fromCurrency] || 0;
+            const rateTo = rates[toCurrency] || 0;
+            setConvertedAmount(((amount / rateFrom) * rateTo).toFixed(2));
+        }
+
+    }, [amount, rates, fromCurrency, toCurrency]);
+
+ //Se a rates ainda não vierem... carrega um JSX, por isso o código não estava redezirando. 
+ //Preciso que a API responda para tal...
+    if(!rates) {
+        return <h1>Carregando...</h1>
+
+    }
+
 
     return (
         <div className="converter">
             <h2>Conversor de Moedas</h2>
-            <input type="number" placeholder="Digite o valor" />
+            <input type="number" placeholder="Digite o valor" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <span>Selecione as moedas</span>
-            <select value={fromCurrency}>
+            <select value={fromCurrency} onChange={(e) => setFromCurrency(e.target.value)}>
                 {Object.keys(rates).map((currency) => (
                     <option key={currency} value={currency}>
                         {currency}
@@ -36,7 +53,7 @@ const CurrencyConverter = () => {
 
             </select>
             <span>para</span>
-            <select value={toCurrency}>
+            <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
                 {Object.keys(rates).map((currency) => (
                     <option key={currency} value={currency}>
                         {currency}
